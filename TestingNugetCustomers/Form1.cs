@@ -1,3 +1,5 @@
+using NugetCarsDRL.Models;
+using NugetCarsDRL.Repositories;
 using NugetCustomersDRL;
 
 using NugetCustomersDRL.Models;
@@ -18,10 +20,24 @@ namespace TestingNugetCustomers
                 new ServiceCustomers();
             CustomersList data = await service.GetCustomersListAsync();
             List<Customer> clients = data.Customers;
-            foreach(Customer c in clients)
+            foreach (Customer c in clients)
             {
                 this.lstCustomers.Items.Add
                     (c.Contacto + ", " + c.Empresa);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RepositoryCoches repo =
+                new RepositoryCoches();
+            List<Coche> coches =
+                repo.GetCoches();
+            this.lstCustomers.Items.Clear();
+            foreach(Coche car in coches)
+            {
+                this.lstCustomers.Items.Add
+                    (car.Marca + " " + car.Modelo);
             }
         }
     }
